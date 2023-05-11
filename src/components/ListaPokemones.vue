@@ -13,21 +13,39 @@
         </button>
       </div>
     </div>
+    <ModalPokemon v-if="selectedPokemon" 
+      @close="selectedPokemon = null" 
+      @toggle-favorite="toggleFavorite(selectedPokemon)" 
+      :is-favorite="isFavorite(selectedPokemon)"
+      @share="sharePokemonDetails"
+    >
+      <template #header>
+        <h1>{{ selectedPokemon.name }}</h1>
+      </template>
+      <template #body>
+        <p>Peso: {{ selectedPokemon.weight }}</p>
+        <p>Altura: {{ selectedPokemon.height }}</p>
+        <p>Tipo: {{ selectedPokemon.types && selectedPokemon.types.length > 0 ? selectedPokemon.types.map(type => type && type.type ? type.type.name : '').join(', ') : '' }}</p>
+      </template>
+    </ModalPokemon>
     </div>
 
 </template>
 
 <script>
-
+import ModalPokemon from "./ModalPokemon.vue";
 
 export default {
-
+  components: {
+    ModalPokemon,
+  },
   data() {
     return {
       pokemons: [],
       favorites: [],
       searchTerm: "",
       showFavorites: false,
+      selectedPokemon: null,
     };
   },
   created() {
@@ -62,8 +80,24 @@ export default {
       return this.favorites.some((favorite) => favorite.name === pokemon.name);
     },
     showPokemonDetails(name) {
-      const pokemon = this.pokemons.find((pokemon) => pokemon.name === name);
-      this.$router.push({ name: "pokemon-details", params: { name: pokemon.name } });
+      this.fetchPokemonDetails(name);
+    },
+    fetchPokemonDetails(name) {
+      fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+        .then((response) => response.json())
+        .then((data) => {
+          this.selectedPokemon = data;
+          this.$modal.show('pokemon-details');
+        })
+        .catch((error) => console.error(error));
+    },
+    sharePokemonDetails() {
+      const pokemonDetails = `${this.selectedPokemon.name}, ${this.selectedPokemon.height}, ${this.selectedPokemon.weight}, ${this.selectedPokemon.types.map(type => type.type.name).join(", ")}`;
+      navigator.clipboard.writeText(pokemonDetails).then(() => {
+        alert("Detalles del Pokemon copiados al portapapeles!");
+      }, () => {
+        alert("Error al copiar al portapapeles");
+      });
     },
     removeFavorite(pokemon) {
       this.favorites = this.favorites.filter((favorite) => favorite.name !== pokemon.name);

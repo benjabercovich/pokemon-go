@@ -1,16 +1,13 @@
 <template>
   <div id="app">
-    <ListaPokemones />
+    <router-view/>
   </div>
 </template>
 
 <script>
-import ListaPokemones from "./components/ListaPokemones.vue";
 
 export default {
-  components: {
-    ListaPokemones,
-  },
+  name: 'App',
 };
 </script>
 
@@ -24,6 +21,5 @@ export default {
   margin-top: 60px;
 }
 </style>
-
 
 
