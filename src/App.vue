@@ -1,17 +1,17 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <ListaPokemones />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ListaPokemones from "./components/ListaPokemones.vue";
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    ListaPokemones,
+  },
+};
 </script>
 
 <style>
@@ -24,3 +24,6 @@ export default {
   margin-top: 60px;
 }
 </style>
+
+
+
