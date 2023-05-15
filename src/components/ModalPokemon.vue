@@ -5,22 +5,19 @@
           <div class="modal-container">
             <div class="modal-header">
               <slot name="header"></slot>
+              <button type="button" class="btn-close" aria-label="Close" @click="$emit('close')">
+                </button>
             </div>
-  
             <div class="modal-body">
               <slot name="body"></slot>
             </div>
-  
             <div class="modal-footer">
               <slot name="footer">
-                <button class="modal-default-button" @click="$emit('close')">
-                  OK
-                </button>
                 <button @click="$emit('toggle-favorite')" :class="{ 'favorite': isFavorite }">
                   {{ isFavorite ? 'Eliminar de favoritos' : 'Agregar a favoritos' }}
                 </button>
                 <button @click="$emit('share')">
-                  Compartir
+                  Share to my friends
                 </button>
               </slot>
             </div>

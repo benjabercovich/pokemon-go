@@ -1,10 +1,11 @@
 <template>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  </head>
   <div>
-    <input v-model="searchTerm" placeholder="Buscar por nombre..." />
-    <div>
-      <button @click="showFavorites = false">Todos</button>
-      <button @click="showFavorites = true">Favoritos</button>
-    </div>
+    <input v-model="searchTerm" placeholder="Search" />
     <div v-for="pokemon in filteredPokemons" :key="pokemon.name">
       <div @click="showPokemonDetails(pokemon.name)">
         {{ pokemon.name }}
@@ -12,6 +13,10 @@
           {{ isFavorite(pokemon) ? 'Eliminar de favoritos' : 'Agregar a favoritos' }}
         </button>
       </div>
+    </div>
+    <div>
+      <button class="start-button" @click="showFavorites = false">All</button>
+      <button class="start-button" @click="showFavorites = true">Favorites</button>
     </div>
     <ModalPokemon v-if="selectedPokemon" 
       @close="selectedPokemon = null" 
@@ -120,4 +125,21 @@ export default {
 .favorite {
   background-color: yellow;
 }
+
+.start-button:hover{
+        background: #C00E20;
+    }
+.start-button{
+        padding: 11px 23px;
+        position: relative;
+        border: none;
+        max-width:100%;  
+        height: auto; 
+        background: #F22539;
+        border-radius: 60px;
+        font-style: normal;
+        color: #FFFFFF;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 22px;}
 </style>
