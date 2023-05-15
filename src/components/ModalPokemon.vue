@@ -16,7 +16,7 @@
                 <button @click="$emit('toggle-favorite')" :class="{ 'favorite': isFavorite }">
                   {{ isFavorite ? 'Eliminar de favoritos' : 'Agregar a favoritos' }}
                 </button>
-                <button @click="$emit('share')">
+                <button class="start-button" @click="$emit('share')">
                   Share to my friends
                 </button>
               </slot>
@@ -53,7 +53,8 @@
 }
 
 .modal-container {
-  width: 300px;
+  width: 570px;
+  height: 506px;
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
@@ -62,4 +63,20 @@
   transition: all .3s ease;
   font-family: Helvetica, Arial, sans-serif;
 }
+.start-button:hover{
+        background: #C00E20;
+    }
+.start-button{
+        padding: 11px 23px;
+        position: relative;
+        border: none;
+        max-width:100%;  
+        height: auto; 
+        background: #F22539;
+        border-radius: 60px;
+        font-style: normal;
+        color: #FFFFFF;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 22px;}
 </style>

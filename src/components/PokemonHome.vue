@@ -37,7 +37,7 @@
   <style scoped>
 
     img {  
-    max-width:30%;  
+    max-width:500px;  
     height: auto;  
     }
     .row {
@@ -73,7 +73,8 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 100vh; /* Ajusta la altura según tus necesidades */
+        height: 100vh;
+        margin-top: -60px;
         }
 
     button:hover{

@@ -4,6 +4,7 @@ import PokemonHome from './components/PokemonHome.vue'
 import ListaPokemones from './components/ListaPokemones.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
