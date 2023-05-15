@@ -44,13 +44,13 @@
             @share="sharePokemonDetails"
           >
             <template #header>
-              <h1>{{ selectedPokemon.name.charAt(0).toUpperCase() + selectedPokemon.name.slice(1) }}</h1>
+            
             </template>
             <template #body>
-              <p>Name: {{ selectedPokemon.name.charAt(0).toUpperCase() + selectedPokemon.name.slice(1) }}</p>
-              <p>Weight: {{ selectedPokemon.weight }}</p>
-              <p>Height: {{ selectedPokemon.height }}</p>
-              <p>Types: {{ selectedPokemon.types && selectedPokemon.types.length > 0 ? selectedPokemon.types.map(type => type.type ? type.type.name : '').join(', ') : '' }}</p>
+              <p><strong>Name:</strong> {{ selectedPokemon.name.charAt(0).toUpperCase() + selectedPokemon.name.slice(1) }}</p>
+              <p><strong>Weight:</strong>  {{ selectedPokemon.weight }}</p>
+              <p><strong>Height:</strong>  {{ selectedPokemon.height }}</p>
+              <p><strong>Types:</strong>  {{ selectedPokemon.types && selectedPokemon.types.length > 0 ? selectedPokemon.types.map(type => type.type ? type.type.name : '').join(', ') : '' }}</p>
             </template>
           </ModalPokemon>
         </div>

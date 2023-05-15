@@ -5,20 +5,22 @@
           <div class="modal-container">
             <div class="modal-header">
               <slot name="header"></slot>
-              <button type="button" class="btn-close" aria-label="Close" @click="$emit('close')">
-                </button>
+              <button type="button" class="close" @click="$emit('close')">
+                <i class="bi bi-x-circle-fill"></i></button>
             </div>
             <div class="modal-body">
               <slot name="body"></slot>
             </div>
             <div class="modal-footer">
               <slot name="footer">
-                <button @click="$emit('toggle-favorite')" :class="{ 'favorite': isFavorite }">
-                  {{ isFavorite ? 'Eliminar de favoritos' : 'Agregar a favoritos' }}
-                </button>
-                <button class="start-button" @click="$emit('share')">
-                  Share to my friends
-                </button>
+                <div class="footer-buttons">
+                  <button class="start-button" @click="$emit('share')">
+                    Share to my friends
+                  </button>
+                  <button @click.stop="$emit('toggle-favorite')" :class="['rounded-circle favorite-button', { 'favorite': isFavorite }]">
+                    <i class='bi-star-fill'></i>
+                  </button>
+                </div>
               </slot>
             </div>
           </div>
@@ -35,6 +37,49 @@
   </script>
   
   <style scoped>
+
+.favorite-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color:#FFFFFF;
+  background-color:transparent;
+  border:none;
+}
+
+.favorite-button i {
+  font-size: 24px;
+  color: #BFBFBF;
+}
+
+
+.modal-header {
+  background: url('../assets/fondo.png') no-repeat center center;
+  background-size: cover;
+  max-width: 570px;
+  height: 200px;
+  margin-left: -30px;
+  margin-right: -30px;
+  margin-top: -20px;
+}
+
+.favorite-button.favorite i {
+  color: #ECA539;
+}
+
+.modal-body{
+  text-align: left;
+}
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -53,8 +98,9 @@
 }
 
 .modal-container {
-  width: 570px;
-  height: 506px;
+  position: relative;
+  max-width: 570px;
+  max-height: 506px;
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
@@ -66,6 +112,12 @@
 .start-button:hover{
         background: #C00E20;
     }
+
+.footer-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
 .start-button{
         padding: 11px 23px;
         position: relative;
