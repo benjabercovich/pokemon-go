@@ -44,13 +44,13 @@
             @share="sharePokemonDetails"
           >
             <template #header>
-            
+              <img v-if="sprite" :src="sprite" alt="Pokemon Sprite" class="pokemon-sprite">
             </template>
             <template #body>
               <p><strong>Name:</strong> {{ selectedPokemon.name.charAt(0).toUpperCase() + selectedPokemon.name.slice(1) }}</p>
               <p><strong>Weight:</strong>  {{ selectedPokemon.weight }}</p>
               <p><strong>Height:</strong>  {{ selectedPokemon.height }}</p>
-              <p><strong>Types:</strong>  {{ selectedPokemon.types && selectedPokemon.types.length > 0 ? selectedPokemon.types.map(type => type.type ? type.type.name : '').join(', ') : '' }}</p>
+              <p><strong>Types:</strong>  {{ selectedPokemon.types && selectedPokemon.types.length > 0 ? selectedPokemon.types.map(type => type.type ? type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1) : '').join(', ') : '' }}</p>
             </template>
           </ModalPokemon>
         </div>
@@ -74,6 +74,7 @@ export default {
       searchTerm: "",
       showFavorites: false,
       selectedPokemon: null,
+      sprite: null,
     };
   },
   created() {
@@ -132,7 +133,7 @@ export default {
         .then((response) => response.json())
         .then((data) => {
           this.selectedPokemon = data;
-          this.$modal.show('pokemon-details');
+          this.sprite = data.sprites?.other?.home?.front_default || ''; // check if sprite exists
         })
         .catch((error) => console.error(error));
     },
@@ -210,6 +211,11 @@ export default {
   padding: 0 20px;
 }
 
+.pokemon-sprite {
+  max-width: 100%;
+  height: auto;
+  max-height: 200px;
+}
 .search {
   max-width: 570px;
   height: 60px;

@@ -32,7 +32,7 @@
   <script>
   export default {
     name: "ModalPokemon",
-    props: ['isFavorite'],
+    props: ['isFavorite', 'sprite'],
   };
   </script>
   
@@ -71,6 +71,9 @@
   margin-left: -30px;
   margin-right: -30px;
   margin-top: -20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .favorite-button.favorite i {
