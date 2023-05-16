@@ -133,7 +133,7 @@ export default {
         .then((response) => response.json())
         .then((data) => {
           this.selectedPokemon = data;
-          this.sprite = data.sprites?.other?.home?.front_default || ''; // check if sprite exists
+          this.sprite = data.sprites?.other?.home?.front_default || '';
         })
         .catch((error) => console.error(error));
     },

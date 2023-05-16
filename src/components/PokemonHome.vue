@@ -28,7 +28,7 @@
     name: 'PokemonHome',
     methods: {
       goToPokemonList() {
-        this.$router.push({ name: 'ListaPokemones' });
+        this.$router.push({ name: 'Loading' });
       }
     }
   }
